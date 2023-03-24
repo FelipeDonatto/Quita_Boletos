@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import '../css/login.css';
 
 function Login() {
@@ -8,6 +9,12 @@ function Login() {
     password: '',
   });
   const [enableStatus, setEnableStatus] = useState(true);
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    localStorage.setItem('user', JSON.stringify(user));
+    navigate('/boletos');
+  };
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
@@ -87,6 +94,7 @@ function Login() {
         <button
           className='rounded disabled:bg-gray-500/25 h-10 w-full bg-green-500'
           disabled={enableStatus}
+          onClick={handleClick}
         >
           Entrar
         </button>
