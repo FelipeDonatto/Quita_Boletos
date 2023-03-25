@@ -1,26 +1,41 @@
-import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 function Header() {
-  const user = JSON.parse(localStorage.getItem('user') as string) || 'Usuário';
+  const user = JSON.parse(localStorage.getItem('user') as string);
+  const firstName = String(user.name).split(' ');
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.clear();
+    navigate('/');
+  };
+
   return (
     <div
       className='flex-col sm:flex-row py-4 flex justify-around items-center border-b border-slate-900/10
-    lg:px-8 lg:border-0 dark:border-slate-300/10 lg:mx-0 sticky top-0 bg-white bg-full px-10'
+    lg:px-8 dark:border-slate-300/10 lg:mx-0 sticky top-0 bg-white bg-full px-10'
     >
-      <p className='text-sm mb-5 sm:mb-0 sm:text-xl'>
+      <p className='text-xl font-medium mb-5 sm:mb-0 sm:text-xl'>
         Olá,{' '}
-        {user.name.replace(
-          user.name.charAt(0),
-          user.name.charAt(0).toUpperCase(),
+        {firstName[0].replace(
+          firstName[0].charAt(0),
+          firstName[0].charAt(0).toUpperCase(),
         )}
         !
       </p>
       <div className='flex justify-between'>
-        <button className='text-sm sm:text-x rounded px-5 mr-3 h-full bg-green-500'>
-          Pagamentos feitos
+        <button
+          name='pagamentos'
+          className='text-sm font-medium sm:text-x mr-2 p-2 rounded h-10 w-full bg-green-500'
+          onClick={() => navigate('/pagamentos')}
+        >
+          Pagamentos
         </button>
-        <button className='text-sm sm:text-x rounded h-10 w-full bg-green-500'>
+        <button
+          name='logout'
+          className='text-sm font-medium sm:text-x rounded p-2 h-10 w-full bg-green-500'
+          onClick={handleLogout}
+        >
           Logout
         </button>
       </div>
