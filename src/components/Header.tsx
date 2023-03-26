@@ -1,9 +1,10 @@
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 function Header() {
   const user = JSON.parse(localStorage.getItem('user') as string);
   const firstName = String(user.name).split(' ');
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleLogout = () => {
     localStorage.clear();
@@ -13,7 +14,7 @@ function Header() {
   return (
     <div
       className='flex-col sm:flex-row py-4 flex justify-around items-center border-b border-slate-900/10
-    lg:px-8 dark:border-slate-300/10 lg:mx-0 sticky top-0 bg-white bg-full px-10'
+    lg:px-8 dark:border-slate-300/10 lg:mx-0 sticky z-50 top-0 bg-white bg-full px-10'
     >
       <p className='text-xl font-medium mb-5 sm:mb-0 sm:text-xl'>
         Olá,{' '}
@@ -24,6 +25,15 @@ function Header() {
         !
       </p>
       <div className='flex justify-between'>
+        {/\d/.test(location.pathname) && (
+          <button
+            name='pagamentos'
+            className='text-sm font-medium sm:text-x mr-2 p-2 rounded h-10 w-full bg-blue-400'
+            onClick={() => navigate('/boletos')}
+          >
+            Voltar
+          </button>
+        )}
         <button
           name='pagamentos'
           className='text-sm font-medium sm:text-x mr-2 p-2 rounded h-10 w-full bg-green-500'

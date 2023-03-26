@@ -1,15 +1,33 @@
-import { ChangeEvent, ChangeEventHandler, useState } from 'react';
+import { ChangeEvent, useContext, useState } from 'react';
+import { useLocation, useParams } from 'react-router-dom';
+import BilletsContext from '../context/billets/BilletsContext';
+import DonePayments from './DonePayments';
 
 function CreateBillet() {
-  const [billet, setBilletValues] = useState({
+  const defaultValue = {
     name: '',
     method: 'Cartão',
     datetime: '',
     value: '',
     currency: 'BRL',
-  });
+  };
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const [billet, setBilletValues] = useState(defaultValue);
+  const location = useLocation();
+  const context = useContext(BilletsContext);
+  const doneText = !/\d/.test(location.pathname) ? 'Registrar' : 'Atualizar';
+  const { id } = useParams() || '';
+
+  const handleButtonClick = () => {
+    if (doneText === 'Atualizar') {
+      context?.updateBillet(Number(id), billet);
+    } else {
+      context?.newBillet(billet);
+      setBilletValues(defaultValue);
+    }
+  };
+
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     setBilletValues({ ...billet, [name]: value });
   };
@@ -21,16 +39,18 @@ function CreateBillet() {
 
   return (
     <div className='w-4/5 sm:w-1/3 mx-auto my-10'>
-      <h1 className='text-2xl my-4 text-center my-4\'>Registrar pagamento</h1>
+      <h1 className='text-2xl my-4 text-center my-4\'>{doneText} pagamento</h1>
       <form>
         <span className='text-gray-700'>Nome</span>
         <input
           type='text'
           name='name'
+          value={billet.name}
           onChange={handleChange}
           className='
                     mt-1 block w-full rounded-md border-gray-300 shadow-sm
-                    focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50
+                    focus:border-indigo-300 focus:ring focus:ring-indigo-200
+                    focus:ring-opacity-50
                   '
           placeholder='Nome do cliente'
         />
@@ -46,6 +66,7 @@ function CreateBillet() {
                     shadow-sm
                     focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50
                   '
+          value={billet.method}
           onChange={handleSelect}
         >
           <option>Cartão</option>
@@ -62,6 +83,7 @@ function CreateBillet() {
                   '
           max='2100-06-14T00:00'
           onChange={handleChange}
+          value={billet.datetime}
           name='datetime'
         />
         <span className='text-gray-700'>Valor</span>
@@ -103,10 +125,24 @@ function CreateBillet() {
             </div>
           </div>
         </div>
-        <button className='rounded disabled:bg-gray-500/25 mt-3 h-10 w-full bg-green-500'>
-          Registrar
+        <button
+          onClick={(e) => {
+            e.preventDefault();
+            handleButtonClick();
+          }}
+          className='rounded disabled:bg-gray-500/25 mt-3 h-10 w-full bg-green-500'
+        >
+          {doneText}
         </button>
       </form>
+
+      {!/\d/.test(location.pathname) && (
+        <div className='flex flex-col w-full mt-10'>
+          {context?.billets.map((e) => (
+            <DonePayments {...e} />
+          ))}
+        </div>
+      )}
     </div>
   );
 }
