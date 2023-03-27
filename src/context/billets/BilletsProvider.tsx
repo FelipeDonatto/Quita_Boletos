@@ -8,24 +8,7 @@ interface BilletProps {
 }
 
 const BilletProvider = ({ children }: BilletProps) => {
-  const [billets, setBillets] = useState<IBillet[]>([
-    {
-      id: 1,
-      name: '123',
-      method: 'Cartão',
-      datetime: '2023-03-26T15:13',
-      value: '11.00',
-      currency: 'BRL',
-    },
-    {
-      id: 2,
-      name: '321',
-      method: 'Cartão',
-      datetime: '2023-03-26T15:13',
-      value: '22.00',
-      currency: 'BRL',
-    },
-  ]);
+  const [billets, setBillets] = useState<IBillet[]>([]);
   const [id, setId] = useState(1);
 
   const newBillet = (billet: Billet) => {

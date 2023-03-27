@@ -12,12 +12,17 @@ function Editar() {
   const billetDetails = context?.billets.find(
     (e) => e.id === Number(id),
   ) as IBillet;
+
   return (
     <div>
       <Header />
       <div className='w-3/4 m-auto'>
         <CreateBillet />
-        <DonePayments {...billetDetails} />
+        {billetDetails !== undefined ? (
+          <DonePayments {...billetDetails} />
+        ) : (
+          <p className='text-center font-bold'>Pagamento deletado</p>
+        )}
       </div>
     </div>
   );

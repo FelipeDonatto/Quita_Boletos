@@ -15,7 +15,7 @@ function DonePayments(billet: IBillet) {
         <div className='flex flex-col items-center'>
           {!/\d/.test(location.pathname) && (
             <button
-              onClick={() => navigate(`${billet.id}`)}
+              onClick={() => navigate(`/boletos/${billet.id}`)}
               className='rounded w-3/4 my-1 bg-green-700'
             >
               Editar

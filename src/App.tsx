@@ -4,6 +4,7 @@ import BilletProvider from './context/billets/BilletsProvider';
 import Boletos from './pages/Boletos';
 import Editar from './pages/Editar';
 import Login from './pages/Login';
+import Pagamentos from './pages/Pagamentos';
 
 function App() {
   document.title = 'Quita Boletos';
@@ -13,6 +14,7 @@ function App() {
         <Route path='/' element={<Login />} />
         <Route path='/boletos' element={<Boletos />} />
         <Route path='/boletos/:id' element={<Editar />} />
+        <Route path='/pagamentos' element={<Pagamentos />} />
       </Routes>
     </BilletProvider>
   );

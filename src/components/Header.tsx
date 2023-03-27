@@ -25,7 +25,7 @@ function Header() {
         !
       </p>
       <div className='flex justify-between'>
-        {/\d/.test(location.pathname) && (
+        {location.pathname !== '/boletos' && (
           <button
             name='pagamentos'
             className='text-sm font-medium sm:text-x mr-2 p-2 rounded h-10 w-full bg-blue-400'
