@@ -139,7 +139,7 @@ function CreateBillet() {
       {!/\d/.test(location.pathname) && (
         <div className='flex flex-col w-full mt-10'>
           {context?.billets.map((e) => (
-            <DonePayments {...e} />
+            <DonePayments {...e} key={e.id} />
           ))}
         </div>
       )}

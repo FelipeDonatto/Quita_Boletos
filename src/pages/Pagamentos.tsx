@@ -10,7 +10,7 @@ function Pagamentos() {
       <Header />
       <div className='flex flex-col w-3/4 m-auto mt-10'>
         {context?.billets.map((e) => (
-          <DonePayments {...e} />
+          <DonePayments {...e} key={e.id} />
         ))}
       </div>
     </div>
