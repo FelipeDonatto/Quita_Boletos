@@ -62,5 +62,8 @@ Uma aplicação simples com um fluxo de login, salvando os dados do usuário no 
     <li>
      Login com dados encriptados por JWT ou alguma verificação semelhante, além de integrar com banco de dados.
     </li>
+    <li>
+     Testes de integração.
+    </li>
 </ol>
 </details>
