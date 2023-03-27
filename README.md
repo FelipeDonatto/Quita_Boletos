@@ -30,7 +30,7 @@ Uma aplicação simples com um fluxo de login, salvando os dados do usuário no 
 
 </details>
 <details>
-    <summary><strong>👨🏻‍💻 Técnologias utilizadas</strong></summary>
+    <summary><strong>👨🏻‍💻 Tecnologias utilizadas</strong></summary>
 
 <ul>
     <li>
@@ -46,7 +46,7 @@ Uma aplicação simples com um fluxo de login, salvando os dados do usuário no 
      React hooks (state e context)
     </li>
     <li>
-     Renposividade através de desenvolvimento mobile-first
+     Resposividade através de desenvolvimento mobile-first
     </li>
 </ul>
 </details>
@@ -61,6 +61,9 @@ Uma aplicação simples com um fluxo de login, salvando os dados do usuário no 
     </li>    
     <li>
      Login com dados encriptados por JWT ou alguma verificação semelhante, além de integrar com banco de dados.
+    </li>
+    <li>
+     Testes de integração.
     </li>
 </ol>
 </details>
