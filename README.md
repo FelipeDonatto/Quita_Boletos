@@ -30,7 +30,7 @@ Uma aplicação simples com um fluxo de login, salvando os dados do usuário no 
 
 </details>
 <details>
-    <summary><strong>👨🏻‍💻 Técnologias utilizadas</strong></summary>
+    <summary><strong>👨🏻‍💻 Tecnologias utilizadas</strong></summary>
 
 <ul>
     <li>
